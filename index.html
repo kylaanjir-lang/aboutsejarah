@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ead9b7">
+<title>Jejak Sang Merdeka — Arsip Merdeka</title>
+<style>
+:root{
+  --paper:#ead9b7;--light:#f7edd6;--dark:#d1b88b;
+  --ink:#493725;--muted:#80684a;--red:#87362c;
+  --line:#bba17a;--shadow:rgba(65,43,20,.15)
+}
+*{box-sizing:border-box}
+body{
+  margin:0;color:var(--ink);
+  font-family:Georgia,"Times New Roman",serif;
+  background-color:var(--paper);
+  background-image:
+    radial-gradient(ellipse at 8% 15%,#9a74401c,transparent 35%),
+    radial-gradient(ellipse at 90% 85%,#805c301b,transparent 38%),
+    repeating-linear-gradient(2deg,transparent 0 7px,#72512a08 8px 9px),
+    repeating-linear-gradient(90deg,transparent 0 13px,#72512a06 14px 15px);
+  min-height:100vh
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+button:disabled{opacity:.45;cursor:not-allowed}
+img{max-width:100%}
+.hidden{display:none!important}
+.container{width:min(960px,calc(100% - 28px));margin:auto}
+.paper{
+  position:relative;background-color:var(--light);
+  background-image:
+    radial-gradient(ellipse at 0 0,#9a744018,transparent 42%),
+    radial-gradient(ellipse at 100% 100%,#805c3018,transparent 38%),
+    repeating-linear-gradient(0deg,transparent 0 8px,#72512a06 9px 10px);
+  border:1px solid var(--line);box-shadow:0 10px 25px var(--shadow)
+}
+.paper:before{content:"";position:absolute;inset:6px;border:1px solid #987b4a30;pointer-events:none}
+.topbar{position:sticky;top:0;z-index:10;background:#ead9b7f5;border-bottom:1px solid var(--line)}
+.nav{max-width:960px;margin:auto;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-size:.82rem;font-weight:bold;letter-spacing:1.5px}
+.brand small{display:block;font-size:.65rem;color:var(--muted);margin-top:4px}
+.navlinks{display:flex;gap:3px;flex-wrap:wrap}
+.navlinks button{border:0;background:transparent;color:var(--ink);padding:8px;font-size:.78rem}
+.navlinks button:hover{background:#87362c13}
+.page{display:none}.page.active{display:block}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:43px;padding:11px 16px;background:var(--ink);color:#fff1d7;border:1px solid var(--ink);text-decoration:none}
+.btn:hover{background:var(--red);border-color:var(--red)}
+.btn.secondary{background:transparent;color:var(--ink)}
+.btn.red{background:var(--red);border-color:var(--red)}
+.btn.small{min-height:36px;padding:8px 11px;font-size:.85rem}
+.eyebrow{font-size:.69rem;text-transform:uppercase;letter-spacing:2px;color:var(--red);font-weight:bold;line-height:1.8}
+h1,h2,h3{font-weight:normal;line-height:1.18}
+h1{font-size:clamp(2.5rem,9vw,5rem)}
+h2{font-size:clamp(1.8rem,5vw,2.8rem)}
+h3{font-size:1.2rem}
+p,li{line-height:1.8}
+.smalltext{font-size:.84rem;color:var(--muted);line-height:1.7}
+.rule{height:1px;background:var(--line);margin:20px 0}
+.section{padding:30px 0 50px}
+.section-head{border-bottom:1px solid var(--line);padding:15px 0 20px;margin-bottom:24px}
+.section-head p{max-width:700px}
+.cover{min-height:calc(100svh - 60px);display:grid;align-items:center;padding:25px 0}
+.cover-inner{padding:clamp(22px,6vw,55px)}
+.cover-copy{text-align:center;max-width:700px;margin:auto}
+.meta{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:.68rem;letter-spacing:1px;text-transform:uppercase}
+.cover-photo{width:min(100%,570px);margin:24px auto;padding:9px 9px 32px;background:#fff8e8;border:1px solid var(--line);transform:rotate(-1deg);position:relative;box-shadow:4px 6px 0 #49372515}
+.cover-photo img{display:block;width:100%;height:clamp(180px,44vw,320px);object-fit:cover;filter:sepia(.12)}
+.caption{position:absolute;bottom:7px;left:12px;font-size:.7rem;color:var(--muted)}
+.subtitle{font-style:italic;color:var(--muted)}
+.group-box{max-width:460px;margin:24px auto 0;padding:18px;text-align:left;border:1px dashed var(--line);background:#fff9e945}
+.group-box ol{padding-left:25px;line-height:1.9}
+.center{text-align:center}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.card{min-width:0;padding:15px;background:#fff9e9a8;border:1px solid var(--line)}
+.card-image{padding:7px;background:#fff8e8;border:1px solid var(--line);transform:rotate(-.5deg);margin-bottom:15px}
+.card-image img{width:100%;height:175px;object-fit:cover;display:block;filter:sepia(.12)}
+.card h3{margin:8px 0}
+.card p{font-size:.9rem}
+.card .btn{width:100%;margin-top:8px}
+.num{color:var(--red);font-size:.7rem;letter-spacing:2px;font-weight:bold}
+.material-hero{padding:22px;margin-bottom:18px}
+.material-hero img{width:100%;max-height:330px;object-fit:cover;border:8px solid #fff8e8;outline:1px solid var(--line);margin:15px 0}
+.article{padding:clamp(20px,5vw,40px);line-height:1.85}
+.article h3{margin-top:26px}
+.article-image{width:min(100%,570px);padding:8px 8px 29px;background:#fff8e8;border:1px solid var(--line);margin:24px auto;transform:rotate(.5deg)}
+.article-image img{width:100%;max-height:350px;object-fit:cover;display:block}
+.article-image figcaption{font-size:.7rem;color:var(--muted);margin-top:8px}
+.notice{padding:13px 15px;border-left:4px solid var(--red);background:#87362c0d;font-size:.88rem;line-height:1.75;margin:18px 0}
+.actions{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin-top:24px}
+.game-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-bottom:20px}
+.game-tab{border:1px solid var(--line);background:#fff9e9a8;color:var(--ink);padding:12px 8px;min-height:72px}
+.game-tab.active{background:var(--ink);color:#fff1d7}
+.game-tab strong,.game-tab span{display:block}.game-tab span{font-size:.72rem;margin-top:5px}
+.case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.case-card{border:1px solid var(--line);background:#fff9e9a8;padding:15px}
+.case-card.selected{outline:2px solid var(--red);background:#f0dfc0}
+.case-card.locked{opacity:.5}
+.case-card p{font-size:.86rem}
+.workspace{padding:22px;margin-top:22px}
+.step{display:none}.step.active{display:block}
+.step-label{font-size:.7rem;letter-spacing:2px;color:var(--red);font-weight:bold}
+.prompt{padding:14px;border:1px dashed var(--line);background:#fff9e9a8;line-height:1.8;margin:14px 0}
+.field{margin:14px 0}
+.field label{display:block;font-size:.86rem;font-weight:bold;margin-bottom:7px}
+input,select,textarea{width:100%;padding:11px;border:1px solid var(--line);background:#fff9e9;color:var(--ink);border-radius:0}
+textarea{min-height:100px;line-height:1.7;resize:vertical}
+.feedback{padding:12px;margin-top:15px;border-left:3px solid var(--red);background:#87362c0d;line-height:1.7}
+.assignment-list{display:grid;gap:8px;margin-top:15px}
+.assignment{padding:12px;border:1px solid var(--line);background:#fff9e9a8;font-size:.87rem;line-height:1.6}
+.quiz-card{padding:clamp(20px,5vw,36px)}
+.progress-track{height:7px;background:#d4c09b;margin:15px 0 25px}
+.progress-bar{height:100%;width:0;background:var(--red);transition:width .2s}
+.quiz-options{display:grid;gap:10px;margin:20px 0}
+.quiz-option{display:flex;align-items:flex-start;gap:10px;text-align:left;padding:13px;border:1px solid var(--line);background:#fff9e9;color:var(--ink);line-height:1.6}
+.quiz-option.chosen{background:#ead8b5;border-color:var(--red)}
+.quiz-option.correct{border-color:#47734a}.quiz-option.wrong{border-color:var(--red)}
+.letter{display:grid;place-items:center;min-width:27px;height:27px;border:1px solid var(--line);border-radius:50%}
+.score{font-size:3.5rem;color:var(--red)}
+.footer{padding:22px 0;text-align:center;font-size:.75rem;color:var(--muted);border-top:1px solid var(--line);margin-top:30px;line-height:1.8}
+.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:30;max-width:90%;background:var(--ink);color:#fff1d7;padding:12px 16px;font-size:.85rem;box-shadow:0 4px 15px var(--shadow)}
+@media(max-width:600px){
+ .nav{align-items:flex-start;flex-direction:column}
+ .navlinks button{font-size:.72rem;padding:8px 6px}
+ .grid,.case-grid{grid-template-columns:1fr}
+ .card-image img{height:210px}
+ .game-tabs{grid-template-columns:1fr}
+ .game-tab{text-align:left;min-height:auto}
+ .cover-inner{padding:22px 16px}
+ .meta{font-size:.57rem}
+ .actions .btn{flex:1}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="topbar hidden" id="topbar">
+  <nav class="nav">
+    <div class="brand">ARSIP MERDEKA<small>JEJAK SANG MERDEKA</small></div>
+    <div class="navlinks">
+      <button onclick="go('home')">Beranda</button>
+      <button onclick="go('materials')">Materi</button>
+      <button onclick="go('games')">Games</button>
+      <button onclick="go('guide')">Pengarah</button>
+      <button onclick="go('quiz')">Kuis</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+<!-- COVER -->
+<section class="page active" id="cover">
+ <div class="cover"><div class="container"><div class="paper cover-inner">
+  <div class="cover-copy">
+   <div class="meta"><span>Dokumen Sejarah</span><span>17 Agustus 1945</span></div>
+   <div class="rule"></div>
+   <div class="eyebrow">Membuka lembar ingatan bangsa</div>
+   <h1 style="margin:12px 0;text-transform:uppercase">Jejak Sang Merdeka</h1>
+   <p class="subtitle">Menelusuri jejak, merawat ingatan.</p>
+
+   <figure class="cover-photo">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Indonesia%20declaration%20of%20independence%2017%20August%201945.jpg"
+      alt="Dokumentasi sejarah Proklamasi Kemerdekaan Indonesia"
+      onerror="this.onerror=null;this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Sukarno%20reading%20the%20proclamation%20of%20Indonesian%20independence.jpg'">
+    <figcaption class="caption">Dokumentasi sejarah kemerdekaan Indonesia</figcaption>
+   </figure>
+
+   <p class="smalltext">Empat bab perjalanan sejarah. Tiga permainan investigasi. Satu kisah tentang kemerdekaan.</p>
+   <div class="group-box">
+    <div class="eyebrow">Identitas Kelompok</div>
+    <h3 style="margin-bottom:4px">Kelompok 1</h3>
+    <p style="margin:0;color:var(--muted)">Materi 4 · Perjuangan Mempertahankan Kemerdekaan</p>
+    <div class="rule"></div>
+    <strong>Daftar Anggota</strong>
+    <ol>
+     <li>Aura Nur Sesil</li>
+     <li>Azzalea Zalfa</li>
+     <li>Naysila Nasyatul</li>
+     <li>Dewi Kaila Roza</li>
+     <li>Dimas Cahya Prasetyo</li>
+     <li>Inka Fitriani Dewi</li>
+     <li>Muhammad Nur Syaifullah</li>
+     <li>Risma Wahyu Ningtiyas</li>
+    </ol>
+    <div class="center"><button class="btn" onclick="startWebsite()">Mulai Menjelajah →</button></div>
+   </div>
+  </div>
+ </div></div></div>
+</section>
+
+<!-- HOME -->
+<section class="page" id="home"><div class="container section">
+ <div class="section-head">
+  <div class="eyebrow">Pintu masuk arsip · 01</div>
+  <h2>Lembar-Lembar Perjuangan</h2>
+  <p>Kemerdekaan bukan hanya sebuah tanggal. Ia adalah berita yang diperjuangkan, dukungan yang tumbuh, pemerintahan yang dibangun, dan perjuangan yang terus berlanjut.</p>
+ </div>
+ <div class="paper" style="padding:22px;margin-bottom:24px">
+  <div class="eyebrow">Catatan pembuka</div>
+  <p>Jelajahi empat bab sejarah, kemudian uji pemahaman melalui permainan investigasi dan kuis penutup. Perhatikan siapa yang terlibat, apa yang terjadi, dan mengapa peristiwa itu penting.</p>
+  <button class="btn" onclick="go('materials')">Buka Arsip Materi →</button>
+ </div>
+ <div class="eyebrow">Indeks dokumen</div><h2>Empat Bab Sejarah</h2>
+ <div class="grid" id="homeMaterials"></div>
+ <div class="rule"></div><div class="eyebrow">Ruang interaktif</div><h2>Pilih Cara Menyelidiki</h2>
+ <div class="grid" id="homeGames"></div>
+ <div class="paper" style="padding:22px;margin-top:24px">
+  <h3>Panduan Pengarah Game</h3>
+  <p class="smalltext">Atur giliran kelompok, catat pilihan kasus, dan pandu pembahasan.</p>
+  <button class="btn secondary" onclick="go('guide')">Buka Panduan →</button>
+ </div>
+</div></section>
+
+<!-- MATERIAL INDEX -->
+<section class="page" id="materials"><div class="container section">
+ <div class="section-head"><div class="eyebrow">Indeks arsip · 02</div><h2>Empat Bab Perjalanan</h2><p>Setiap bab memiliki halaman judul dan halaman narasi tersendiri.</p></div>
+ <div class="grid" id="materialCards"></div>
+ <div class="actions"><button class="btn secondary" onclick="go('home')">← Beranda</button><button class="btn" onclick="go('games')">Lanjut ke Games →</button></div>
+</div></section>
+
+<!-- CHAPTER COVER -->
+<section class="page" id="chapterTitle"><div class="container section">
+ <div class="paper material-hero">
+  <div class="eyebrow" id="chapterEyebrow"></div>
+  <h1 id="chapterHeading"></h1>
+  <p id="chapterIntro" class="smalltext"></p>
+  <img id="chapterImage" src="" alt="">
+  <p id="chapterCaption" class="smalltext"></p>
+  <div class="actions"><button class="btn secondary" onclick="go('materials')">← Indeks Bab</button><button class="btn" onclick="openNarrative()">Baca Narasi →</button></div>
+ </div>
+</div></section>
+
+<!-- NARRATIVE -->
+<section class="page" id="chapterNarrative"><div class="container section">
+ <article class="paper article">
+  <div class="eyebrow" id="narrativeEyebrow"></div>
+  <h2 id="narrativeHeading"></h2>
+  <div id="narrativeBody"></div>
+  <div class="notice">Catatan pembaca: perhatikan tokoh, bukti, urutan kejadian, sebab-akibat, dan arti penting peristiwa.</div>
+  <div class="actions"><button class="btn secondary" onclick="go('chapterTitle')">← Judul Bab</button><button class="btn" id="nextChapterButton" onclick="nextChapter()">Bab Berikutnya →</button></div>
+ </article>
+</div></section>
+
+<!-- GAMES -->
+<section class="page" id="games"><div class="container section">
+ <div class="section-head"><div class="eyebrow">Ruang investigasi · 03</div><h2>Pilih Cara Bermain</h2><p>Ada tiga jenis games. Setiap game memiliki empat pilihan kasus berdasarkan empat bab sejarah.</p></div>
+ <div class="game-tabs" id="gameTabs"></div>
+ <div class="paper" style="padding:20px;margin-bottom:24px">
+  <div class="eyebrow" id="gameEyebrow"></div><h2 id="gameHeading"></h2><p id="gameDescription"></p><p id="gameHow" class="smalltext"></p>
+ </div>
+ <div class="section-head"><div class="eyebrow">Pilih satu dokumen kasus</div><h2>Empat Pilihan Kasus</h2><p class="smalltext">Kasus yang dialokasikan tidak dapat dipilih ulang oleh kelompok lain pada game yang sama di browser ini.</p></div>
+ <div class="case-grid" id="caseCards"></div>
+ <div class="paper workspace hidden" id="gameWorkspace">
+  <div class="eyebrow">Lembar kerja investigasi</div><h2 id="workspaceHeading"></h2><p id="workspaceIntro" class="smalltext"></p><div class="rule"></div>
+  <div class="step active" id="gameStep1"><div class="step-label">TAHAP 01 DARI 04</div><h3>Baca berkas kasus</h3><div class="prompt" id="caseBrief"></div><p id="caseQuestion"></p><button class="btn" onclick="setGameStep(2)">Lanjut ke Petunjuk →</button></div>
+  <div class="step" id="gameStep2"><div class="step-label">TAHAP 02 DARI 04</div><h3>Periksa petunjuk</h3><div class="prompt" id="caseClue"></div><p id="clueQuestion"></p><div class="field"><label for="clueAnswer">Catatan kelompok</label><textarea id="clueAnswer" placeholder="Tuliskan bukti atau informasi yang ditemukan..."></textarea></div><div class="actions"><button class="btn secondary" onclick="setGameStep(1)">← Kembali</button><button class="btn" onclick="setGameStep(3)">Analisis →</button></div></div>
+  <div class="step" id="gameStep3"><div class="step-label">TAHAP 03 DARI 04</div><h3>Susun kesimpulan</h3><p id="analysisPrompt"></p><div class="field"><label for="analysisAnswer">Kesimpulan kelompok</label><textarea id="analysisAnswer" placeholder="Jelaskan alasan dan hubungan sebab-akibat..."></textarea></div><div class="actions"><button class="btn secondary" onclick="setGameStep(2)">← Kembali</button><button class="btn" onclick="setGameStep(4)">Refleksi →</button></div></div>
+  <div class="step" id="gameStep4"><div class="step-label">TAHAP 04 DARI 04</div><h3>Refleksi dan pembahasan</h3><div class="prompt" id="reflectionPrompt"></div><p class="smalltext">Sampaikan kesimpulan dengan bukti dan alasan. Pengarah game membantu mengoreksi informasi yang kurang tepat.</p><div class="actions"><button class="btn secondary" onclick="setGameStep(3)">← Kembali</button><button class="btn red" onclick="finishGame()">Selesaikan Kasus ✓</button></div></div>
+  <div class="feedback hidden" id="gameFeedback"></div>
+  <div class="actions"><button class="btn secondary" onclick="closeWorkspace()">Kembali ke Kasus</button></div>
+ </div>
+ <div class="actions"><button class="btn secondary" onclick="go('materials')">← Materi</button><button class="btn" onclick="go('guide')">Panduan Pengarah →</button></div>
+</div></section>
+
+<!-- GUIDE -->
+<section class="page" id="guide"><div class="container section">
+ <div class="section-head"><div class="eyebrow">Catatan fasilitator · 04</div><h2>Panduan Pengarah Game</h2><p>Pengarah menjelaskan aturan, mengatur giliran, mencatat pilihan kasus, dan memandu pembahasan.</p></div>
+ <div class="paper article">
+  <h3>01. Persiapan</h3><ol><li>Pastikan peserta memahami materi.</li><li>Tentukan game yang dimainkan.</li><li>Catat nama kelompok dan kasus yang dipilih.</li><li>Setiap kelompok memilih satu kasus pada satu game.</li></ol>
+  <h3>02. Cara memandu</h3><ol><li>Perkenalkan situasi kasus.</li><li>Minta kelompok membaca petunjuk.</li><li>Beri waktu berdiskusi.</li><li>Minta kelompok menjelaskan kesimpulan beserta bukti.</li><li>Akhiri dengan pembahasan bersama.</li></ol>
+  <h3>03. Catat alokasi kasus</h3>
+  <div class="notice">Catatan: alokasi pada versi ini disimpan di browser perangkat yang digunakan. Pilihan tidak otomatis tersinkronisasi ke HP lain. Pengarah perlu memakai satu perangkat sebagai catatan utama.</div>
+  <div class="field"><label for="directorGroup">Nama kelompok</label><input id="directorGroup" placeholder="Contoh: Kelompok 2"></div>
+  <div class="field"><label for="directorGame">Jenis game</label><select id="directorGame"><option value="0">Mystery Envelope</option><option value="1">History Detective</option><option value="2">The Turning Point</option></select></div>
+  <div class="field"><label for="directorCase">Pilihan kasus</label><select id="directorCase"></select></div>
+  <button class="btn" onclick="assignCase()">Catat Alokasi</button>
+  <button class="btn secondary" onclick="renderAssignments()">Perbarui Daftar</button>
+  <div id="assignmentList" class="assignment-list"></div>
+  <button class="btn secondary" style="margin-top:12px" onclick="exportAssignments()">Unduh Catatan Alokasi</button>
+  <div class="rule"></div><h3>Naskah singkat pengarah</h3>
+  <p>“Setiap kelompok memilih satu kasus yang tersedia pada game ini. Bacalah petunjuk, diskusikan bukti, lalu susun kesimpulan beserta alasannya. Setelah selesai, kelompok menyampaikan hasil penyelidikan dan mengikuti pembahasan bersama.”</p>
+ </div>
+ <div class="actions"><button class="btn secondary" onclick="go('games')">← Games</button><button class="btn" onclick="go('quiz')">Menuju Kuis →</button></div>
+</div></section>
+
+<!-- QUIZ -->
+<section class="page" id="quiz"><div class="container section">
+ <div class="section-head"><div class="eyebrow">Evaluasi akhir · 05</div><h2>Uji Ingatan Sejarah</h2><p>Sepuluh pertanyaan untuk meninjau pemahaman tentang Proklamasi dan perjuangan mempertahankan kemerdekaan.</p></div>
+ <div class="paper quiz-card" id="quizArea">
+  <div id="quizPlay">
+   <div class="smalltext" id="quizCount"></div><div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+   <h3 id="questionText"></h3><div class="quiz-options" id="quizOptions"></div><div class="feedback hidden" id="quizFeedback"></div>
+   <div class="actions"><button class="btn secondary" oncli
